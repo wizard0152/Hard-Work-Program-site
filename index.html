@@ -421,6 +421,46 @@ li { margin: 6px 0; }
   }
 }
 
+.tracker {
+  margin-top: 22px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255,255,255,.105), rgba(255,255,255,.035));
+  box-shadow: 0 18px 54px rgba(0,0,0,.34);
+}
+.tracker-head { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; }
+.tracker-actions, .tracker-controls, .backup-grid { display:flex; gap:12px; flex-wrap:wrap; }
+.tracker-note { color: var(--muted); margin: 8px 0 0; line-height: 1.55; }
+.tracker-panel { margin-top:18px; padding-top:18px; border-top:1px solid var(--border); }
+.tracker label { display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:14px; }
+.tracker input, .tracker select, .tracker textarea {
+  width:100%; border:1px solid var(--border); border-radius:14px;
+  background:rgba(0,0,0,.25); color:var(--text); padding:11px 12px; outline:none;
+}
+.tracker textarea { min-height:115px; resize:vertical; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; }
+.tracker-controls label { min-width:220px; flex:1; }
+.log-card, .history-card {
+  margin-top:12px; padding:16px; border:1px solid var(--border); border-radius:20px;
+  background:rgba(0,0,0,.18);
+}
+.log-card h3, .stats-table h3, .history-card h3 { margin:0 0 10px; }
+.set-row { display:grid; grid-template-columns: 42px 1fr 1fr 1fr; gap:8px; align-items:center; margin-top:8px; }
+.set-row span { color:var(--muted); font-size:13px; }
+.stats-table table { width:100%; border-collapse:collapse; overflow:hidden; border-radius:18px; }
+.stats-table th, .stats-table td { padding:10px; border-bottom:1px solid var(--border); text-align:left; font-size:14px; }
+.stats-table th { color:var(--accent); font-weight:800; }
+.history-card p { color:var(--muted); margin:6px 0 0; }
+.backup-grid > div { flex:1; min-width:260px; }
+.compact { margin-top: 16px; }
+@media (max-width: 720px) {
+  .tracker-head { flex-direction:column; }
+  .tracker-actions { width:100%; }
+  .tracker-actions button { flex:1; }
+  .set-row { grid-template-columns: 32px 1fr 1fr; }
+  .set-row input.rir-input { grid-column: 2 / 4; }
+}
+
 </style>
 </head>
 <body>
@@ -453,6 +493,58 @@ li { margin: 6px 0; }
     </section>
 
     <section id="today-workout" class="today-list reveal"></section>
+
+
+
+    <section class="tracker reveal">
+      <div class="tracker-head">
+        <div>
+          <p class="eyebrow">Журнал прогресса</p>
+          <h2>Запись тренировки</h2>
+          <p class="tracker-note">Данные сохраняются в браузере на этом устройстве. Для переноса на другое устройство используй экспорт/импорт.</p>
+        </div>
+        <div class="tracker-actions">
+          <button id="show-tracker" type="button">Открыть журнал</button>
+          <button id="show-stats" type="button">Статистика</button>
+        </div>
+      </div>
+
+      <div id="tracker-panel" class="tracker-panel hidden">
+        <div class="tracker-controls">
+          <label>Дата
+            <input id="log-date" type="date">
+          </label>
+          <label>День программы
+            <select id="log-day"></select>
+          </label>
+        </div>
+        <div id="log-exercises" class="log-exercises"></div>
+        <div class="bottom-action compact">
+          <button id="save-workout" type="button">Сохранить тренировку</button>
+        </div>
+      </div>
+
+      <div id="stats-panel" class="tracker-panel hidden">
+        <h3>Статистика по упражнениям</h3>
+        <div id="stats-table" class="stats-table"></div>
+
+        <h3>Последние тренировки</h3>
+        <div id="history-list" class="history-list"></div>
+
+        <h3>Резервная копия / перенос</h3>
+        <div class="backup-grid">
+          <div>
+            <button id="export-data" type="button">Скопировать backup-код</button>
+            <textarea id="export-box" readonly placeholder="Здесь появится код для переноса данных"></textarea>
+          </div>
+          <div>
+            <button id="import-data" type="button">Импортировать код</button>
+            <textarea id="import-box" placeholder="Вставь сюда backup-код с другого устройства"></textarea>
+          </div>
+        </div>
+        <p class="tracker-note">На новом устройстве открой сайт, вставь backup-код и нажми «Импортировать код».</p>
+      </div>
+    </section>
 
     <section class="rules reveal">
       <h2>Правила отказа и прогрессии</h2>
