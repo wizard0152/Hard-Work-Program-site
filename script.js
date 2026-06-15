@@ -136,3 +136,31 @@ document.getElementById("toggle-all").addEventListener("click", () => {
 
 renderToday();
 renderWeek();
+
+const quotes = [
+  "Hard work builds the body. Discipline keeps it.",
+  "No excuses. Just reps.",
+  "Pain is temporary. Progress is permanent.",
+  "Train hard. Eat big. Stay consistent.",
+  "The body follows the discipline.",
+  "Small steps. Heavy weights. Big changes.",
+  "Earn the shape you want.",
+  "Consistency beats motivation.",
+  "Build in silence. Let progress speak.",
+  "One more rep. One more day."
+];
+
+function setDailyQuote() {
+  const today = new Date();
+  const dayKey = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+  let hash = 0;
+
+  for (let i = 0; i < dayKey.length; i++) {
+    hash = dayKey.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  const quote = quotes[Math.abs(hash) % quotes.length];
+  document.querySelector(".motto").textContent = quote;
+}
+
+setDailyQuote();
