@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upper / Lower — программа тренировок</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-glow glow-one"></div>
+  <div class="bg-glow glow-two"></div>
+
+  <main class="app">
+    <section class="hero reveal">
+      <p class="badge">Upper / Lower · Mass Gain · V-Shape</p>
+      <h1>Программа тренировок<br><span>Верх / Низ</span></h1>
+      <p class="motto">Hard work builds the body. Discipline keeps it.</p>
+      <p class="subtitle">4-дневный план для набора массы, широких плеч, сильных ног и V-силуэта.</p>
+    </section>
+
+    <section class="today-card reveal">
+      <div>
+        <p class="eyebrow">Тренировка на сегодня</p>
+        <h2 id="today-title">Загрузка...</h2>
+        <p id="today-note"></p>
+      </div>
+    </section>
+
+    <section id="today-workout" class="today-list reveal"></section>
+
+    <section class="rules reveal">
+      <h2>Правила отказа и прогрессии</h2>
+      <div class="rule-grid">
+        <div><strong>Базовые упражнения</strong><span>Не идти в отказ. Обычно RIR 1–3.</span></div>
+        <div><strong>Изоляция</strong><span>Можно работать близко к отказу: RIR 0–1.</span></div>
+        <div><strong>Прогресс</strong><span>Взял верх диапазона — добавь вес.</span></div>
+        <div><strong>Питание</strong><span>2700–2900 ккал, белок 120–130 г.</span></div>
+      </div>
+    </section>
+
+    <section class="bottom-action reveal">
+      <button id="toggle-all">Показать всю неделю</button>
+    </section>
+
+    <section id="week" class="week hidden reveal">
+      <h2>Вся неделя</h2>
+      <div id="week-list"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
